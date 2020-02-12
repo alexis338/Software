@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package calculodeerror;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.swing.JComboBox;
 
 /**
@@ -18,6 +20,12 @@ public class Software extends javax.swing.JPanel {
   	errorA=vv-va;
   	return errorA;
   		
+  }
+  //metodo para Truncamiento de los resultados 
+  static double TDecimal(int Numero, double Decimal){
+  		BigDecimal formatNumber = new BigDecimal(Decimal);
+		formatNumber = formatNumber.setScale(Numero, RoundingMode.DOWN);
+		return formatNumber.doubleValue();
   }
 
     /**
@@ -73,7 +81,7 @@ public class Software extends javax.swing.JPanel {
 
         jLabel3.setText("Resultados:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Redondeo ", "Truncamiento" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Truncamiento", "Redondeo ", "Ninguno", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -170,6 +178,8 @@ public class Software extends javax.swing.JPanel {
         }
         else if(opcion==1){
     	double errorAbsoR, errorRelaR;
+        errorAbsoR= RDecimal(valor ,ErrorAbso(n2,n1));
+    	errorRelaR= RDecimal(valor,ErrorRela(ErrorAbso(n2,n1),n1));
         
         }
         else{
