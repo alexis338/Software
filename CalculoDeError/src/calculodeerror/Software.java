@@ -21,11 +21,23 @@ public class Software extends javax.swing.JPanel {
   	return errorA;
   		
   }
+    //metodo para calcular el valor Relativo
+  static double ErrorRela(double err, double vv){
+  	double errorR=0;
+  	errorR= err/vv;
+  	return errorR;
+  		
+  }
   //metodo para Truncamiento de los resultados 
   static double TDecimal(int Numero, double Decimal){
   		BigDecimal formatNumber = new BigDecimal(Decimal);
 		formatNumber = formatNumber.setScale(Numero, RoundingMode.DOWN);
 		return formatNumber.doubleValue();
+  }
+    //metodo para Redondeo de los Resultados
+  static double RDecimal(int Numero, double Decimal){
+  		 BigDecimal redondeo = new  BigDecimal(Decimal).setScale(Numero,RoundingMode.HALF_EVEN);
+  		 return redondeo.doubleValue();
   }
 
     /**
@@ -174,6 +186,8 @@ public class Software extends javax.swing.JPanel {
             double errorAbsoT=0, errorRelaT=0;
             errorAbsoT= TDecimal(valor,ErrorAbso(n2,n1));
             errorRelaT= TDecimal(valor,ErrorRela(ErrorAbso(n2,n1),n1));
+            jTextField3.setText("Error Absoluto: "+Double.toString(errorAbsoT)+""
+            +"Error Relativo: "+Double.toString(errorRelaT));
         
         }
         else if(opcion==1){
